@@ -1,0 +1,28 @@
+
+*{
+     font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+.main{
+    color: blanchedalmond;
+display: flex;
+justify-content: center;
+align-items: center; 
+margin-top: 50px;
+flex-direction: column;
+height: 500px;
+}
+
+.main input{
+    background-color: #A1A6B4;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    height: 25px;
+    margin-top: 10px;
+}
