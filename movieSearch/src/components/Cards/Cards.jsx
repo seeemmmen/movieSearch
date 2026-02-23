@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import styles from './Cards.module.css';
-export const Cards = ({ name }) => {
+export const Cards = ({ name , setIsLoading }) => {
   const [foundFilm, setFoundFilm] = useState([]);
 
   useEffect(() => {
     if (!name) return; 
 
     const findFilm = async () => {
+          setIsLoading(true);
+
       try {
         const response = await fetch(
           `https://www.omdbapi.com/?s=${name}&apikey=fbf6ed17`
@@ -14,11 +16,15 @@ export const Cards = ({ name }) => {
         const data = await response.json();
         console.log(data)
 
-        if (data.Response === "True") {
+       setTimeout(()=>{
+           if (data.Response === "True") {
           setFoundFilm(data.Search); 
+          setIsLoading(false);
+
         } else {
           setFoundFilm([]);
         }
+       },1000)
       } catch (error) {
         console.log(error);
       }
@@ -34,6 +40,7 @@ export const Cards = ({ name }) => {
           <h3>{movie.Title}</h3>
           {movie.Poster?<img src={movie.Poster} alt={movie.Title} width="150" />:<p>Photo Not Found</p>}
         </div>
+        
       ))}
     </div>
   );
